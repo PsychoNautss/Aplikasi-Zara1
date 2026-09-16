@@ -50,27 +50,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$pageTitle = 'Daftar';
-require __DIR__ . '/includes/header.php';
 ?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar · JARA</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="auth-shell">
+    <div class="auth-hero">
+        <div class="auth-hero-content">
+            <div class="auth-logo">JARA</div>
+            <h1>Mulai kelola tugasmu hari ini.</h1>
+            <p class="lead">Buat akun gratis, susun daftar tugas pertamamu, dan ajak rekan kerja atau teman satu tim untuk berkolaborasi.</p>
+            <ul class="auth-features">
+                <li><span class="tick">&#10003;</span> Prioritas rendah, sedang, hingga tinggi</li>
+                <li><span class="tick">&#10003;</span> Tenggat waktu untuk tiap tugas</li>
+                <li><span class="tick">&#10003;</span> Kolaborasi tim dalam satu daftar</li>
+            </ul>
+        </div>
+    </div>
 
-<div class="card" style="max-width:420px;margin:0 auto;">
-    <h1>Buat Akun</h1>
-    <p class="subtitle">Kelola tugas pribadi maupun tim dengan JARA.</p>
+    <div class="auth-form-side">
+        <div class="auth-card">
+            <div class="auth-card-logo">JARA</div>
+            <h1>Buat Akun</h1>
+            <p class="subtitle">Kelola tugas pribadi maupun tim dengan JARA.</p>
 
-    <?php foreach ($errors as $error): ?>
-        <p class="error-text"><?= e($error) ?></p>
-    <?php endforeach; ?>
+            <?php if ($errors): ?>
+                <div class="auth-errors">
+                    <?php foreach ($errors as $error): ?>
+                        <p class="error-text"><?= e($error) ?></p>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
 
-    <form method="post" action="register.php">
-        <?= csrf_field() ?>
-        <input type="text" name="name" placeholder="Nama lengkap" value="<?= e($old['name']) ?>" required maxlength="100">
-        <input type="email" name="email" placeholder="Email" value="<?= e($old['email']) ?>" required>
-        <input type="password" name="password" placeholder="Password (min. 6 karakter)" required minlength="6">
-        <button type="submit">Daftar</button>
-    </form>
+            <form method="post" action="register.php">
+                <?= csrf_field() ?>
+                <input type="text" name="name" placeholder="Nama lengkap" value="<?= e($old['name']) ?>" required maxlength="100" autofocus>
+                <input type="email" name="email" placeholder="Email" value="<?= e($old['email']) ?>" required>
+                <input type="password" name="password" placeholder="Password (min. 6 karakter)" required minlength="6">
+                <button type="submit">Daftar</button>
+            </form>
 
-    <p class="subtitle">Sudah punya akun? <a href="login.php">Masuk di sini</a>.</p>
+            <p class="auth-footer-link">Sudah punya akun? <a href="login.php">Masuk di sini</a></p>
+        </div>
+    </div>
 </div>
-
-<?php require __DIR__ . '/includes/footer.php'; ?>
+</body>
+</html>
